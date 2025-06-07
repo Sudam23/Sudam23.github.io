@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudam Kumar Paul Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+   
+    <style>
+         /* Fixed navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            transition: all 0.3s ease;
+        }
+        /* Ensure body has proper padding to account for fixed navbar */
+        body {
+            padding-top: 76px; /* Adjust based on navbar height */
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll padding for anchor links */
+        html {
+            scroll-padding-top: 80px;
+        }
+        /* Added animations */
+        @keyframes shadowPulse {
+            0% { box-shadow: 0 10px 25px rgba(255, 179, 0, 0.5); }
+            50% { box-shadow: 0 15px 35px rgba(255, 179, 0, 0.7); }
+            100% { box-shadow: 0 10px 25px rgba(255, 179, 0, 0.5); }
+        }
+        
+        @keyframes cardHover {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+        
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 0 rgba(255, 179, 0, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(255, 179, 0, 0.8); }
+            100% { box-shadow: 0 0 0 rgba(255, 179, 0, 0.5); }
+        }
+
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            color: #000 !important;
+            /* Default link color to black */
+            font-weight: 500;
+            /* Slightly bolder font */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffffff !important;
+            transform: scale(1.1);
+        }
+
+        .btn-warning:hover {
+            background-color: white;
+            color: #ffb300;
+        }
+
+        .social-icons .nav-link {
+            font-size: 24px;
+            color: #333 !important;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons .nav-link:hover {
+            color: #ffb300 !important;
+            transform: scale(1.2);
+        }
+
+        .cl-bld{
+            font-weight: bold;
+        }
+        .card-body{
+            min-height: 150px;
+        }
+        .card{
+            padding-bottom: 15px;
+        }
+        .link{
+            color: black;
+            text-decoration: none;
+        }
+        .link:hover{
+            color: #ffb300;
+            transition: color 0.3s ease;
+        }
+        .cvd:hover{
+            background-color: #ffb300;
+            color: black;
+        }
+        .cvd{
+            color: #f57c00;
+            border-color: #f57c00;
+        }
+        
+        /* Certificate card styles */
+        .certificate-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 179, 0, 0.3);
+        }
+        
+        .certificate-img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        
+        .certificate-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px;
+        }
+        
+        .certificate-card:hover .certificate-overlay {
+            opacity: 1;
+        }
+        /* Experience card styles */
+        .experience-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 179, 0, 0.2);
+        }
+
+        .experience-timeline {
+            position: relative;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #ffb300, #f57c00);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-left: 50px;
+            padding-bottom: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -46px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #ffb300;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #ffb300;
+        }
+        .contact-card {
+            border-radius: 40px;
+            box-shadow: 0 15px 35px rgba(255, 179, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 179, 0, 0.4);
+        }
+        
+        .contact-header {
+            background: linear-gradient(135deg, #ffb300, #ff8f00);
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .contact-info-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-item:hover {
+            background-color: #fff8e1;
+            padding-left: 10px;
+        }
+        
+        .contact-info-item a:hover {
+            color: #ffb300 !important;
+        }
+        
+        .contact-info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #ffb300 !important;
+            transform: scale(1.2);
+        }
+        
+        .contact-form {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .form-control {
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #ffb300;
+            box-shadow: 0 0 0 0.2rem rgba(255, 179, 0, 0.25);
+        }
+        
+        .btn-contact {
+            background: linear-gradient(135deg, #ffb300, #ff8f00);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-contact:hover {
+            background: white !important;
+            color: black !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid #ffb300;
+        }
+        
+        .info-icon {
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+        
+        .email-icon {
+            color: #1e88e5;
+        }
+        
+        .phone-icon {
+            color: #43a047;
+        }
+        
+        .location-icon {
+            color: #e53935;
+        }
+        
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, #ffb300, #ff8f00);
+            border-radius: 2px;
+            margin: 20px 0;
+        }
+        /* Animated cards */
+        .animated-card {
+            animation: shadowPulse 4s infinite ease-in-out;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .animated-card:hover {
+            animation: none;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 179, 0, 0.7);
+        }
+        
+        /* Project cards animation */
+        .project-card {
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Image animations */
+        .profile-img {
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        
+        
+        /* Footer animation */
+        footer {
+            transition: all 0.5s ease;
+        }
+        
+        footer:hover {
+            background-color: #e6a100;
+            letter-spacing: 0.5px;
+        }
+        /* Navbar scroll effect */
+        .navbar.scrolled {
+            background-color: rgba(255, 179, 0, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #ffb300;">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-2" href="#" style="font-size: 25px;">Sudam Kumar Paul</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">My Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills I have</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">My Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#certificates">My Certificates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Connect with me</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </nav>
+    
+    <div class="container d-flex justify-content-center my-5" id="about">
+        <div class="card border-0 p-3 animated-card" style="border-radius: 50px; max-width: 900px; background: #f8f9fa;">
+            <div class="d-flex flex-column flex-md-row align-items-center">
+                <div class="flex-shrink-0 text-center p-3">
+                    <img src="resource/port.jpg" class="img-fluid rounded-circle profile-img" alt="Sudam Kumar Paul" style="width: 200px; height: 200px; object-fit: cover;">
+                </div>
+                <div class="flex-grow-1 text-center text-md-start p-4">
+                    <h5 class="card-title" style="font-size: 30px;">Hi! Sudam Here</h5>
+                    <p class="card-text my-3" style="font-size: 18px;">
+                        I'm an M.Sc. Big Data Analytics(Data Science) student at RKMVERI, Belur, and a passionate, self motivated and enthusiast in data science from North 24 Parganas, West Bengal. I love problem solving, learning new technologies and working on personal and group projects to enhance my skills. Currrently, I am learning Python Language, Machine learning and Deep learning techniques and also Finance(Asset Pricing Models). My goal to contribute in real world applications while continuously improving my expertise. I am always eager to explore new opportunities and connect with various people and keep learning.
+                    </p>
+                    <div>
+                        <a class="btn btn-warning rounded-pill my-2 mx-2" href="mailto:2002sudam@gmail.com" role="button">Send me Email</a>
+                        <a class="btn cvd rounded-pill my-2 mx-2" target="_blank" href="resource/Resume.pdf" download>Get my Resume</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center my-5" id="education">
+        <div class="card border-0 p-3 animated-card" style="border-radius: 40px; background: #f8f9fa; box-shadow: 0 10px 25px rgba(255, 179, 0, 0.5); max-width: 900px;">
+            <div class="card-header text-white text-center" style="font-size: 25px; background-color: #ffb300; border-radius: 30px;">
+                My Education
+            </div>
+            <!-- Education Card 1 -->
+            <div class="card my-3 border-0 animated-card d-flex flex-row align-items-center" style="border-radius: 30px;">
+                <img src="resource/veri.gif" class="img-fluid" style="max-width: 200px; height: auto; border-top-left-radius: 30px; border-bottom-left-radius: 30px;" alt="...">
+                <div class="card-body px-4">
+                    <h5 class="card-title">
+                        Ramakrishna Mission Vivekananda Educational and Research Institute
+                    </h5>
+                    <p class="card-text">Currently pursuing MSc in Big Data Analytics(Data Science).</p>
+                    <button class="btn btn-warning rounded-pill my-2 collapse-btn" data-bs-toggle="collapse" 
+                    data-bs-target="#collapse1" type="button" aria-expanded="false" aria-controls="collapse1">
+                        Courses Taken
+                    </button>
+                    <div class="collapse" id="collapse1">
+                        <div class="card card-body mt-2" style="background-color:rgba(255, 179, 0, 0.1); border-radius: 20px;">
+                            <ul>
+                                <li>Data Structure and Algorithms using Python</li>
+                                <li>Linear Algebra and Matrix Computation</li>
+                                <li>Probability and Stochastic Processes</li>
+                                <li>Machine Learning</li>
+                                <li>Distributed Computing with Hadoop</li>
+                                <li>Basic Statistics</li>
+                                <li>Deep Learning and its application in NLP</li>
+                                <li>Computer Vision</li>
+                                <li>Time Series and Survival Analysis</li>
+                                <li>Distributed Computing using SPARK and Graph Database(Neo4j)</li>
+                                <li>Advanced Statistical Methods</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Education Card 2 -->
+            <div class="card my-3 border-0 animated-card d-flex flex-row align-items-center" style="border-radius: 30px;">
+                <img src="resource/mid.jpeg" class="img-fluid" style="max-width: 300px; height: auto; border-top-left-radius: 30px; border-bottom-left-radius: 30px;" alt="...">
+                <div class="card-body px-4">
+                    <h5 class="card-title">Barasat Government College (Under West Bengal State University)</h5>
+                    <p class="card-text">Completed B.Sc. (Hons) in Mathematics in July 2023 with overall 9.83 CGPA.</p>
+                    <button class="btn btn-warning rounded-pill my-2 collapse-btn" data-bs-toggle="collapse" data-bs-target="#collapse2" type="button" aria-expanded="false" aria-controls="collapse2">
+                        Courses Taken
+                    </button>
+                    <div class="collapse" id="collapse2">
+                        <div class="card card-body mt-2" style="background-color:rgba(255, 179, 0, 0.1); border-radius: 20px;">
+                            <ul>
+                                <li>Theory of Equations</li>
+                                <li>Linear Programming</li>
+                                <li>Metric Spaces and Complex Analysis</li>
+                                <li>Partial Differential Equations,</li>
+                                <li>Ring Theory and Linear Algebra</li>
+                                <li>Multivariate Calculus</li>
+                                <li>Logic and Sets</li>
+                                <li>Riemann Integration and Series of Functions</li>
+                                <li>Numerical Methods </li>
+                                <li>Group Theory–I and II</li>
+                                <li>Theory of Real Functions</li>
+                                <li>Differential Equation and Vector Calculus</li>
+                                <li>Real Analysis</li>
+                                <li>Calculus, Geometry & Ordinary Differential Equations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Education Card 3 -->
+            <div class="card my-3 border-0 animated-card d-flex flex-row align-items-center" style="border-radius: 30px;">
+                <img src="resource/images.png" class="img-fluid" style="max-width: 190px; height: auto; border-top-left-radius: 30px; border-bottom-left-radius: 30px;" alt="...">
+                <div class="card-body px-4">
+                    <h5 class="card-title">Habra High School(H.S.)</h5>
+                    <p class="card-text">Passed both Secondary (2018) and H.S. (2020) in Science stream (Physics, Chemistry, Mathematics, and Biology).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center my-5" id="skills">
+        <div class="card border-0 p-3 animated-card" style="border-radius: 40px; background: #f8f9fa; box-shadow: 0 10px 25px rgba(255, 179, 0, 0.5);max-width: 900px;width: 100%;">
+            <div class="card-header text-white text-center" style="font-size: 25px; background-color: #ffb300; border-radius: 30px;">
+                Skills I Have
+            </div>
+            <ul class="list-group list-group-flush px-3 py-3" style="border-radius: 30px;">
+                <li class="list-group-item border-0 cl-bld fw-semibold">Programming in Python, R(Basic), LaTeX</li>                
+                <li class="list-group-item border-0 cl-bld fw-semibold">Data Structures and Algorithms</li>
+                <li class="list-group-item border-0 cl-bld fw-semibold">Distributed Computing using PySpark</li>
+                <li class="list-group-item border-0 cl-bld fw-semibold">Graph Database - Neo4j</li>
+                <li class="list-group-item border-0 cl-bld fw-semibold">Image Processing and Computer Vision</li>
+                <li class="list-group-item border-0 cl-bld fw-semibold">Machine Learning and Deep Learning</li>
+                <li class="list-group-item border-0 cl-bld fw-semibold">DL Frameworks, ML Tools and OpenCV</li>
+                <li class="list-group-item border-0 cl-bld fw-semibold">Tools: Google Colab, Jupyter Notebook, VS Code, ChatGPT, Git</li>
+                <li class="list-group-item border-0 cl-bld fw-semibold">Operating Systems: Windows and Linux</li>
+            </ul>
+        </div>
+    </div>
+    
+
+    
+    <div class="container my-5 d-flex justify-content-center" id="projects">
+        <div class="card border-0 p-3 m-4 animated-card" style="width: 900px; border-radius: 40px; background: #f8f9fa; box-shadow: 0 10px 25px rgba(255, 179, 0, 0.5);">
+            <div class="card-header text-white text-center" style="font-size: 25px; background-color: #ffb300; border-radius: 30px;">
+                My Projects
+            </div>
+            <div class="position-relative">
+                <!-- Carousel -->
+                <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner px-2 pt-3">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active">
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div class="col">
+                                    <div class="card h-100 border-0 project-card" style="border-radius: 30px;">
+                                        <div class="card-body">
+                                            <span class="badge" style="background-color: #ffb300;">Completed</span>
+                                            <h5 class="card-title mt-2"><a href="https://github.com/Sudam23/Vision-Guided-Robotic-Manipulation" target="_blank" class="link">Vision Guided Robotic Manipulation</a></h5>
+                                            <p class="card-text">A robotic arm powered by Computer Vision and ESP32 that can detect and move small things within it's workspace autonomously, staying stationary.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100 border-0 project-card" style="border-radius: 30px;">
+                                        <div class="card-body">
+                                            <span class="badge" style="background-color: #ffb300;">Completed</span>
+                                            <h5 class="card-title mt-2"><a href="https://github.com/Sudam23/Implementation-of-ANN-on-MNIST_Dataset-from-Scratch" class="link">Implementation of ANN from Scratch</a></h5>
+                                            <p class="card-text">Two-layer fully connected Neural Network for handwritten digit classification on MNIST dataset using Numpy from scratch without using DL Libraries.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100 border-0 project-card" style="border-radius: 30px;">
+                                        <div class="card-body">
+                                            <span class="badge" style="background-color: #ffb300;">Completed</span>
+                                            <h5 class="card-title mt-2"><a href="https://github.com/Sudam23/Wildfire-Prediction-using-Distributed_ML_H2O" target="_blank" class="link">Wildfire Prediction using H2O</a></h5>
+                                            <p class="card-text">Distributed Machine Learning using the H2O framework with Random Forest Classifier to predict the "Confidence" level of Wildfire.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div class="col">
+                                    <div class="card h-100 border-0 project-card" style="border-radius: 30px;">
+                                        <div class="card-body">
+                                            <span class="badge" style="background-color: #ffb300;">Completed</span>
+                                            <h5 class="card-title mt-2"><a href="https://github.com/Sudam23/Implementation-of-K_Means_Clustering-on-Iris_Dataset-using-PySPARK" target="_blank" class="link">Unsupervised Learning using Py-Spark</a></h5>
+                                            <p class="card-text">Implementation of K_Means_Clustering in Distributed way using Py-Spark on Iris Dataset including feature engineering and optimal cluster selection using Silhouette scores.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100 border-0 project-card" style="border-radius: 30px;">
+                                        <div class="card-body">
+                                            <span class="badge" style="background-color: #ffb300;">Completed</span>
+                                            <h5 class="card-title mt-2"><a href="https://github.com/Sudam23/Prediction-of-Cost_of_Living_Index-in-Several-Countries-by-Regression_techniques" target="_blank" class="link">Evaluating Regression Models for Cost of Living Index Prediction</a></h5>
+                                            <p class="card-text">Prediction of Cost_of_Living_Index in several countries using various Regression_techniques, Gradient-descent methods and Regularization techniques.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100 border-0 project-card" style="border-radius: 30px;">
+                                        <div class="card-body">
+                                            <span class="badge" style="background-color: green;">Ongoing</span>
+                                            <h5 class="card-title mt-2"><a href="https://github.com/Sudam23/Conditional-Image-Generation-using-GaussianGAN" target="_blank" class="link">GauGan: Conditional Image Generation Using Gaussian-GAN</a></h5>
+                                            <p class="card-text">GaussianGAN from scratch in TensorFlow/Keras using custom Generator, Discriminator and Encoder based on SPADE and VAE principles.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Slide 3 -->
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div class="col">
+                                    <div class="card h-100 border-0 project-card d-flex align-items-center justify-content-center" style="border-radius: 30px; background-color: #e9ecef;">
+                                        <div class="card-body text-center">
+                                            <span class="text-muted">More Projects Coming Soon</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>            
+                                
+                    <!-- External Controls -->
+                    <div class="d-flex justify-content-between mt-4 px-4">
+                        <button class="btn btn-outline-warning" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
+                            Prev
+                        </button>
+                        <button class="btn btn-outline-warning" type="button" data-bs-target="#projectsCarousel" data-bs-slide="next">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- New Certificates Section -->
+    <div class="container d-flex justify-content-center my-5" id="certificates">
+        <div class="card border-0 p-3 animated-card" style="border-radius: 40px; background: #f8f9fa; box-shadow: 0 10px 25px rgba(255, 179, 0, 0.5); max-width: 900px; width: 100%;">
+            <div class="card-header text-white text-center" style="font-size: 25px; background-color: #ffb300; border-radius: 30px;">
+                My Certificates
+            </div>
+            <div class="container-fluid px-3 py-4">
+                <div class="row g-4">
+                    
+                    
+                    
+                    
+                    <!-- Certificate 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card certificate-card border-0 h-100" style="border-radius: 20px;">
+                            <div class="position-relative" >
+                                <img src="resource/cert1.jpg" class="card-img-top certificate-img" alt="DSA Certificate">
+                                <div class="certificate-overlay" data-bs-toggle="modal" data-bs-target="#certificateModal" data-cert-img="resource/cert1.jpg" data-cert-title="Programming, Data Structures And Algorithms Using Python" data-cert-issuer="NPTEL">
+                                    <i class="bi bi-eye text-white" style="font-size: 2rem;"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold">Programming, Data Structures And Algorithms Using Python</h6>
+                                <p class="card-text text-muted small">Issued by NPTEL, Jan-March 2025</p>
+                                <span class="badge" style="background-color: #ffb300;">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <!-- Certificate 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card certificate-card border-0 h-100" style="border-radius: 20px;">
+                            <div class="position-relative">
+                                <img src="resource/cert2.jpg" class="card-img-top certificate-img" alt="Python Programming Certificate">
+                                <div class="certificate-overlay" data-bs-toggle="modal" data-bs-target="#certificateModal" data-cert-img="resource/cert2.jpg" data-cert-title="Python Programming" data-cert-issuer="Udemy">
+                                    <i class="bi bi-eye text-white" style="font-size: 2rem;"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold">Python for Data Science</h6>
+                                <p class="card-text text-muted small">Issued by NPTEL, July 2025 onwards</p>
+                                <span class="badge" style="background-color: green;">In Progress</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                                    <div class="card h-100 border-0 project-card d-flex align-items-center justify-content-center" style="border-radius: 30px; background-color: #e9ecef;">
+                                        <div class="card-body text-center">
+                                            <span class="text-muted">More Coming Soon</span>
+                                        </div>
+                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Certificate Modal -->
+    <div class="modal fade certificate-modal" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <img id="modalCertificateImg" src="" alt="Certificate" class="img-fluid">
+                </div>
+                <div class="modal-footer justify-content-center bg-light">
+                    <div class="text-center">
+                        <h6 class="mb-1" id="modalCertificateTitle"></h6>
+                        <small class="text-muted" id="modalCertificateIssuer"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- New Experience Section -->
+    <div class="container d-flex justify-content-center my-5" id="experience">
+        <div class="card border-0 p-3 animated-card" style="border-radius: 40px; background: #f8f9fa; box-shadow: 0 10px 25px rgba(255, 179, 0, 0.5); max-width: 900px; width: 100%;">
+            <div class="card-header text-white text-center" style="font-size: 25px; background-color: #ffb300; border-radius: 30px;">
+                Experience
+            </div>
+            <div class="container-fluid px-4 py-4">
+                <div class="experience-timeline">
+                    
+                    <!-- Experience Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="card experience-card border-0" style="border-radius: 20px; background: rgba(255, 179, 0, 0.05);">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="card-title mb-0 fw-bold">IASc-INSA-NASI Summer Research Intern</h5>
+                                    <span class="badge" style="background-color: #28a745;">Current</span>
+                                </div>
+                                <h6 class="text-muted mb-2"> Indian Institute of Technology, Kharagpur</h6>
+                                <p class="text-muted small mb-3"><i class="bi bi-calendar-event"></i> June 2025 - Present</p>
+                                <p class="card-text">Working on Asset Pricing Models in Financial Economics.</p>
+                                <div class="mt-3">
+                                    <span class="badge bg-light text-dark me-1">CAPM</span>
+                                    <span class="badge bg-light text-dark me-1">ICAPM</span>
+                                    <span class="badge bg-light text-dark me-1">APT</span>
+                                    <span class="badge bg-light text-dark me-1">FFF</span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="card experience-card border-0" style="border-radius: 20px;background: rgba(255, 179, 0, 0.05);">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="card-title mb-0 fw-bold">Data Science Intern</h5>
+                                    <span class="badge" style="background-color: #28a745;">Current</span>
+                                </div>
+                                <h6 class="text-muted mb-2">Ramakrishna Mission Vivekananda Educational and Research Institute</h6>
+                                <p class="text-muted small mb-3"><i class="bi bi-calendar-event"></i> July 2025</p>
+                                <p class="card-text">Will Work on Stock Price Forecasting using Transformer and find relationship between stocks in Finance.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 3 - Placeholder for future experience -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot" style="background: #e9ecef; box-shadow: 0 0 0 3px #e9ecef;"></div>
+                        <div class="card border-0 project-card" style="border-radius: 20px; background-color: #e9ecef;">
+                            <div class="card-body text-center">
+                                <span class="text-muted">Looking for more opportunities...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4" style="max-width: 920px;" id="contact">
+        <div class="card border-0 animated-card" style="border-radius: 40px; box-shadow: 0 10px 25px rgba(255, 179, 0, 0.5);">
+            <div class="card-header text-white text-center" style="font-size: 25px; background-color: #ffb300; border-top-left-radius: 40px; border-top-right-radius: 40px;">
+                Connect with Me
+            
+            </div>
+            
+            <div class="row g-0">
+                <!-- Left Side - Contact Information -->
+                <div class="col-lg-6">
+                    <div class="p-4">
+                        <h4 class="text-center mb-4" style="color: #ffb300; font-weight: bold;">Get In Touch</h4>
+                        <p class="mb-0 mt-2 opacity-75 text-center">I'm always open to discussing new opportunities, collaborations.</p>
+                        <div class="contact-info-item">
+                            <a href="mailto:2002sudam@gmail.com" class="text-decoration-none text-dark d-flex align-items-center">
+                                <i class="bi bi-envelope-fill info-icon email-icon"></i>
+                                2002sudam@gmail.com
+                            </a>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <a href="tel:+919933407223" class="text-decoration-none text-dark d-flex align-items-center">
+                                <i class="bi bi-telephone-fill info-icon phone-icon"></i>
+                                +91 9933407223
+                            </a>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-geo-alt-fill info-icon location-icon"></i>
+                                North 24 Parganas, West Bengal, India
+                            </div>
+                        </div>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <div class="text-center">
+                            <h5 class="mb-4" style="color: #ffb300; font-weight: bold;">Follow Me</h5>
+                            <div class="d-flex justify-content-center" style="gap: 3rem;">
+                                <a href="https://github.com/Sudam23/" target="_blank" class="nav-link fs-4 text-dark">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/sudam-39o3982o" target="_blank" class="nav-link fs-4 text-dark">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                                <a href="https://instagram.com/_sudamofficial_" target="_blank" class="nav-link fs-4 text-dark">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="https://t.me/Sudam2002" target="_blank" class="nav-link fs-4 text-dark">
+                                    <i class="bi bi-telegram"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="section-divider"></div>
+                            
+                            <div class="text-center">
+                                <h5 class="mb-3" style="color: #ffb300;">Sudam's Portfolio</h5>
+                                <p class="text-muted mb-0">Thank you for visiting my personal portfolio website. Connect with me over socials.</p>
+                            </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Contact Form -->
+                <div class="col-lg-6 border-start">
+                    <div class="p-4">
+                        <div class="contact-form">
+                            <h4 class="text-center mb-4" style="color: #ffb300; font-weight: bold;">Send Message</h4>
+                            
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label fw-semibold">Full Name</label>
+                                    <input type="text" class="form-control" id="userName" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="userEmail" class="form-label fw-semibold">Email Address</label>
+                                    <input type="email" class="form-control" id="userEmail" required>
+                                </div>
+                                
+                                
+                                
+                                <div class="mb-3">
+                                    <label for="messageSubject" class="form-label fw-semibold">Subject</label>
+                                    <input type="text" class="form-control" id="messageSubject" required>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="userMessage" class="form-label fw-semibold">Message</label>
+                                    <textarea class="form-control" id="userMessage" rows="4" required></textarea>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-contact text-white px-4">
+                                        <i class="bi bi-send me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="text-light text-center py-3 mt-5" style="background-color:#ffb300; font-weight: bold;">
+        <div class="container">
+            &copy; 2025 Sudam Kumar Paul | All Rights Reserved
+            <div class="mt-2">
+                <small style="color: black;">Designed with ❤️ by Sudam Kumar Paul</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap@5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('userName').value,
+                email: document.getElementById('userEmail').value,
+                subject: document.getElementById('messageSubject').value,
+                message: document.getElementById('userMessage').value
+            };
+            
+            // Create mailto link
+            const subject = encodeURIComponent(formData.subject);
+            const body = encodeURIComponent(
+                `Hello Sudam,\n\n` +
+                `Name: ${formData.name}\n` +
+                `Email: ${formData.email}\n` +
+                `Message:\n${formData.message}\n\n` +
+                `Best regards,\n${formData.name}`
+            );
+            
+            const mailtoLink = `mailto:2002sudam@gmail.com?subject=${subject}&body=${body}`;
+            window.open(mailtoLink);
+            
+            // Show success message
+            alert('Thank you for your message! Your default email client will open to send the message. I look forward to our conversation!');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Add smooth animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe contact card
+            const contactCard = document.querySelector('.contact-card');
+            contactCard.style.opacity = '0';
+            contactCard.style.transform = 'translateY(30px)';
+            contactCard.style.transition = 'all 0.6s ease';
+            observer.observe(contactCard);
+        });
+    </script>
+    <script>
+        // JavaScript to handle certificate modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const certificateModal = document.getElementById('certificateModal');
+            const modalImg = document.getElementById('modalCertificateImg');
+            const modalTitle = document.getElementById('modalCertificateTitle');
+            const modalIssuer = document.getElementById('modalCertificateIssuer');
+
+            certificateModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const certImg = button.getAttribute('data-cert-img');
+                const certTitle = button.getAttribute('data-cert-title');
+                const certIssuer = button.getAttribute('data-cert-issuer');
+
+                modalImg.src = certImg;
+                modalTitle.textContent = certTitle;
+                modalIssuer.textContent = 'Issued by ' + certIssuer;
+            });
+        });
+    </script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to navigation based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        
+    </script>
+
+</body>
+
+</html>

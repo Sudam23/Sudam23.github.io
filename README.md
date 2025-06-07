@@ -8,7 +8,7 @@ I'm Sudam Kumar Paul, a passionate Data Science student from India. This portfol
 
 ## Website Link
 
-[Visit My Portfolio](https://sudam23.github.io/My_Portfolio/)
+[Visit My Portfolio](https://sudam23.github.io/)
 
 ## Technologies Used
 

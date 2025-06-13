@@ -37,7 +37,7 @@ I'm Sudam Kumar Paul, a passionate Data Science student from India. This portfol
 
 ## Connect with Me
 
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sudam-39o3982o)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kumarsudam23)
 [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/Sudam23)
 [![Telegram](https://img.shields.io/badge/-Telegram-2CA5E0?style=flat&logo=telegram&logoColor=white)](https://t.me/Sudam2002)
 [![Instagram](https://img.shields.io/badge/-Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/_sudamofficial_/)
@@ -48,4 +48,4 @@ I'm Sudam Kumar Paul, a passionate Data Science student from India. This portfol
 
 ---
 
-Designed with ❤️ by [Sudam Kumar Paul](https://www.linkedin.com/in/sudam-39o3982o)
+Designed with ❤️ by [Sudam Kumar Paul](https://www.linkedin.com/in/kumarsudam23)
